@@ -17,6 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/auth", authRoutes);
+//check request
 // authRoutes.use((req, res, next) => {
 //     console.log(`Request to authRoutes: ${req.method} ${req.url}`);
 //     next();
