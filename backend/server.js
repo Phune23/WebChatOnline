@@ -4,20 +4,21 @@ import authRoutes from "./routes/auth.routes.js";
 import connectToMongoDB from "./db/connectToMongoDB.js";
 
 const app = express();
-
-dotenv.config();
 const PORT = process.env.PORT || 5000;
 
-app.get("/", (req, res) => {
-    //root route http://localhost:5000/
-    res.send("Hello Phu, wellcome to Chat Onlineeeeeeeeeeeeeeeeeeeeeeeeeee!");
-});
+dotenv.config();
 
-// Middleware để parse các request body
-app.use(express.json());
+app.use(express.json()); //to parse the imcoming requiests with json payloads (from req.body)
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/auth", authRoutes);
+
+// app.get("/", (req, res) => {
+//     //root route http://localhost:5000/
+//     res.send("Hello Phu, wellcome to Chat Onlineeeeeeeeeeeeeeeeeeeeeeeeeee!");
+// });
+
+// Middleware để parse các request body
 //check request
 // authRoutes.use((req, res, next) => {
 //     console.log(`Request to authRoutes: ${req.method} ${req.url}`);
