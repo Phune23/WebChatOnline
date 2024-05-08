@@ -24,9 +24,8 @@ const MessageInput = () => {
                 onChange={(e) => setMessage(e.target.value)}
             />
             <button type="submit" className="absolute inset-y-0 end-0 flex items-center pe-3">
-              {loading ? <div className="loading loading-spinner"></div> : <GrSend />}
+              {loading ? <div className="loading loading-spinner"></div> : <GrSend />} 
             </button>
-
         </div>
     </form>
     
