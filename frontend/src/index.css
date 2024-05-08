@@ -53,3 +53,10 @@ body{
         transform: translate3d(4px, 0, 0);
     }
 }
+/* input message */
+.w-Inputmessage{
+    width: 300px;
+}
+.icon-size{
+    font-size: 25px;
+}
