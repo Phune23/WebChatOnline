@@ -34,8 +34,20 @@ const MessageContainer = () => {
                   <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                     <li>
                       <a className="justify-between">
-                        Profile
+                        Full Name:
                         <span className="badge">{selectedConversation.fullName}</span>
+                      </a>
+                      <a className="justify-between">
+                        Gender:
+                        <span className="badge">{selectedConversation.gender}</span>
+                      </a>
+                      <a className="justify-between">
+                        Age :
+                        <span className="badge">**</span>
+                      </a>
+                      <a className="justify-between">
+                        Birthday :
+                        <span className="badge">**/**/****</span>
                       </a>
                     </li>
                     <li>
