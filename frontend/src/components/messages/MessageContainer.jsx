@@ -4,6 +4,7 @@ import MessageInput from "./MessageInput";
 import { LuMessagesSquare } from "react-icons/lu";
 import useConversation from "../../zustand/useConversation";
 import { useAuthContext } from "../../context/AuthContext";
+import { CgMoreO } from "react-icons/cg";
 
 const MessageContainer = () => {
   const {selectedConversation, setSelectedConversation} = useConversation();
@@ -20,9 +21,32 @@ const MessageContainer = () => {
         ) : ( 
           <>
             {/* Header */}
-            <div className="bg-violet-600 px-4 py-2 mb-2">
-                <span className="label-text">To: </span>{" "}
-                <span className="text-gray-900 font-bold">{selectedConversation.fullName}</span>
+            <div className="bg-violet-600 px-4 py-2 mb-2 ">
+                <span className="label-text ">To: </span>{" "}
+                <span className="text-gray-900 font-bold ">{selectedConversation.fullName}</span>
+
+                <div className="dropdown dropdown-end">
+                  <div tabIndex={0} role="button" className="btn-profile-ortherChatUser">
+                    <div className="">
+                      <CgMoreO />
+                    </div>
+                  </div>
+                  <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                    <li>
+                      <a className="justify-between">
+                        Profile
+                        <span className="badge">{selectedConversation.fullName}</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        Settings
+                        <span className="badge">Not Run</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
             </div>
 
             <Messages/>

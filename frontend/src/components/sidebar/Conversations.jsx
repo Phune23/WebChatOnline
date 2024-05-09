@@ -7,7 +7,7 @@ const Conversations = () => {
   const {loading, conversations} = useGetConversations();
   console.log("CONVERSATIONS:",conversations);
   return (
-    <div className="py-2 flex flex-col overflow-auto">
+    <div className="py-2 flex flex-col overflow-auto btn-list-ortherChatUser">
       {conversations.map((conversation, idx) => (
         <Conversation
           key={conversation._id}

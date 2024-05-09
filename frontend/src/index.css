@@ -65,3 +65,38 @@ body{
 .areaLogout{
     padding-top: 20px;
 }
+
+/* button dropdow in chat orther user || name user chat */
+.btn-profile-ortherChatUser{
+    color: white;
+    margin-left: 10px;
+    font-size: 25px;
+    color: #b69dcb;
+    vertical-align:middle;
+}
+    .btn-profile-ortherChatUser:hover {
+        color: #32124e;
+    }
+
+/* button logout in chat list user */
+.btn-logout-listChatUser{
+    font-size:30px;
+    color: #b69dcb;
+}
+    .btn-logout-listChatUser:hover {
+        color: #8800ff;
+    }
+
+/* dropdow in list user */
+.btn-sendMessage-ortherChatUser{
+    color: #b69dcb;
+}
+    .btn-sendMessage-ortherChatUser:hover {
+        color: #8800ff;
+    }
+
+/* img user near button logout */
+.imgUserinLogout{
+    padding-right: 10px;
+    width: 45px;
+}

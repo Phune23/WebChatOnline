@@ -9,7 +9,7 @@ const Sidebar = () => {
         <SearchInput/>
         <div className="divider px-3"/>
         <Conversations/>
-        <LogoutButton/> 
+        <LogoutButton/>
     </div>
   );
 };
