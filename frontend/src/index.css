@@ -1,6 +1,10 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 body{
     background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("/bg.png");
@@ -99,4 +103,11 @@ body{
 .imgUserinLogout{
     padding-right: 10px;
     width: 45px;
+}
+
+.setBoardEmoji{
+    position: absolute;
+    top: -440px; 
+    left: 90px;
+
 }

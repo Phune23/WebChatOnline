@@ -3,10 +3,18 @@ import { GrSend } from "react-icons/gr";
 import { MdAttachFile } from "react-icons/md";
 import { MdEmojiEmotions } from "react-icons/md";
 import useSendMessage from "../../hooks/useSendMessage";
+import data from "@emoji-mart/data";
+import Picker from "@emoji-mart/react";
 
 const MessageInput = () => {
   const [message, setMessage] = useState("");
   const {loading, sendMessage} = useSendMessage();
+
+  const [showEmoji, setShowEmoji] = useState(false);
+
+  const handleEmojiSelect = (emoji) => {
+    setMessage(message + emoji.native);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,11 +42,22 @@ const MessageInput = () => {
               <input type="file" className="hidden" onChange={sendFile}/>
               <MdAttachFile />
             </label>
-            <button className="absolute icon-size inset-y-0 end-9 flex items-center pe-3 btn-sendMessage-ortherChatUser">
-              <span>
-                <MdEmojiEmotions />
-              </span>
-            </button>
+            <span
+              className="absolute icon-size inset-y-0 end-9 flex items-center pe-3 btn-sendMessage-ortherChatUser "
+              onClick={() => setShowEmoji(!showEmoji)}
+            >
+              <MdEmojiEmotions />
+            </span>
+            <div className="setBoardEmoji">
+              {showEmoji && <div className="">
+                <Picker data={data} 
+                  onEmojiSelect={handleEmojiSelect} 
+                  emojiSize={24}
+                  emojiButtonSize={28}
+                  maxFrequentRows={0}
+                />
+              </div>}
+            </div>
             <button type="submit" className="absolute icon-size inset-y-0 end-1 flex items-center pe-3 btn-sendMessage-ortherChatUser">
               {loading ? <div className="loading loading-spinner"></div> : <GrSend />} 
             </button>
