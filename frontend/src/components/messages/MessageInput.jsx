@@ -30,12 +30,14 @@ const MessageInput = () => {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
             />
-            <label className="absolute cursor-pointer icon-size inset-y-0 end-16 flex items-center pe-3">
-              <input type="file" className="hidden"/>
+            <label className="absolute icon-size inset-y-0 end-16 flex items-center pe-3">
+              <input type="file" className="hidden" onChange={sendFile}/>
               <MdAttachFile />
             </label>
             <button className="absolute icon-size inset-y-0 end-9 flex items-center pe-3">
-              <MdEmojiEmotions />
+              <span>
+                <MdEmojiEmotions />
+              </span>
             </button>
             <button type="submit" className="absolute icon-size inset-y-0 end-1 flex items-center pe-3">
               {loading ? <div className="loading loading-spinner"></div> : <GrSend />} 

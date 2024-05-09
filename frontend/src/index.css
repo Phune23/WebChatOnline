@@ -60,3 +60,8 @@ body{
 .icon-size{
     font-size: 25px;
 }
+
+/* area logout */
+.areaLogout{
+    padding-top: 20px;
+}
