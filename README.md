@@ -2,7 +2,17 @@
 
 `✉ A chat website that connects people with noni and exchange stories. `
 
-⚙ Functions of online web chat: 
+# 🔗 DepLoy
+Copy `Link` of `Web Chat Online`:
+```bash
+https://webchatonline.onrender.com
+```
+
+Or click on this `Link`:
+<a href="https://webchatonline.onrender.com" target="_blank">Chat Online</a>
+
+# ⚙ Functions of online web chat
+Functions in the Online Chat website:
 - 🔑 Create an account, log in, log out.
 - 🔍 Search for users ( directly open to the message of the searched user ).
 - 🔐 Verify whether the user is online or not (show a green dot if the user is online).
@@ -14,7 +24,7 @@
 > 🖼 Image of online web chat
 <img title="Demo WWebchatOnline" alt="Exam WebChatOnline" src="./ImagesReadme/Demo1.jpg" style="width:800px;" class="center">
 
-# 🔧 Update code
+# 🔧 Update Code
 
 In `Visual Studio Code's` `Terminal` run this:
 ```bash
