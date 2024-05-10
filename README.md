@@ -19,7 +19,7 @@ Functions in the Online Chat website:
 - 👀 View other users' information descriptions.
 - 📢 Realtime message, accompanied by message sound and a small animation of the message.
 - 🕖 The message section displays the avatar, username as well as the time the message was sent.
-- 😆 Gửi emoji cảm xúc cạnh nút gửi tin nhắn.
+- 😆 Send an emotional emoji next to the send message button.
 
 > 🖼 Image of online web chat
 <img title="Demo WWebchatOnline" alt="Exam WebChatOnline" src="./ImagesReadme/Demo1.jpg" style="width:800px;" class="center">
