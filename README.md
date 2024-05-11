@@ -34,6 +34,6 @@ npm run build
 
 In `Visual Studio Code's` `Terminal` run this:
 ```bash
-npm  start
+npm start
 ```
 
