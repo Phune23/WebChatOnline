@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Messages from "./Messages";
 import MessageInput from "./MessageInput";
 import { LuMessagesSquare } from "react-icons/lu";
@@ -15,13 +15,13 @@ const MessageContainer = () => {
   },[setSelectedConversation]);
 
   return (
-    <div className="md:min-w-[450px] flex flex-col">
+    <div className="md:min-w-[450px] flex flex-col responsiveMessageContainer">
         {!selectedConversation ? (
           <NoChatSelected/> 
         ) : ( 
           <>
             {/* Header */}
-            <div className="bg-violet-600 px-4 py-2 mb-2 ">
+            <div className="bg-violet-600 px-4 py-2 mb-2 ">                
                 <span className="label-text ">To: </span>{" "}
                 <span className="text-gray-900 font-bold ">{selectedConversation.fullName}</span>
 

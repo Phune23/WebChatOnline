@@ -21,6 +21,9 @@ const MessageInput = () => {
     if(!message) return;
     // window.alert('Tin nhắn đã được gửi: ' + message);
     await sendMessage(message);
+    if(showEmoji){
+      setShowEmoji(!showEmoji);
+    }
     setMessage("");
   };
 
@@ -48,7 +51,7 @@ const MessageInput = () => {
             >
               <MdEmojiEmotions />
             </span>
-            <div className="setBoardEmoji">
+            <div className="setBoardEmoji z-[2]">
               {showEmoji && <div className="">
                 <Picker data={data} 
                   onEmojiSelect={handleEmojiSelect} 

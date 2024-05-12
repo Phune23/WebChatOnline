@@ -111,3 +111,66 @@ body{
     left: 90px;
 
 }
+
+.mobile{
+    width: auto;
+}
+/* ===================== Responsive design ===================== */
+/* Mobile: width < 740px */
+@media only screen and (max-width:46.1875em) {
+/*===============================all Sidebar===============================*/
+    /* .responsiveSidebar{
+        flex-direction: column;
+        height: 667px;
+        width: 475px;
+    } */
+    body{
+        overflow: hidden;
+    }
+    .responsiveRoot{
+        padding: 0;
+        margin: 0;
+        border: none;
+    }
+    .responsiveHone{
+        height: 567px;
+        width: 475px;
+        padding: 25px;
+    }
+    .responsiveSearchInput .input{
+        width: 200px;
+    }
+    .responsiveLogoutButton{
+        /* width: 200px;
+        height: 80px; */
+        flex-direction: row;
+    }
+    .responsiveDivLogoutButton{
+        width: 50px;
+    }
+    .responsiveDivNameAndPicUser{
+        width: 100px;
+    }
+/*===============================all MessageContainer===============================*/
+    /* .responsiveMessageContainer{
+        align-items: center;
+    } */
+    .responsiveSendMessage{
+        width: 280px;
+        margin: 10px;
+        padding: 10px;
+    }
+
+}
+/* Tablet: width >=740px and width <1024px */
+@media only screen and (min-width:46.25em) and (max-width:63.9375em) {
+    .responsiveLogoutButton{
+        flex-direction: row;
+    }
+}
+/* PC: width >=1024px */
+@media only screen and (min-width:64em) {
+    .responsiveLogoutButton{
+        flex-direction: row;
+    }
+}

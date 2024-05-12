@@ -7,9 +7,9 @@ const LogoutButton = () => {
 
   const {loading, logout} = useLogout();
   return (
-    <div className="mt-auto areaLogout flex flex-col w-full lg:flex-row">
+    <div className="mt-auto areaLogout flex flex-col w-full lg:flex-row responsiveLogoutButton">
       {!loading ? (
-        <div className="grid flex-grow place-items-center">
+        <div className="grid flex-grow place-items-center responsiveDivLogoutButton">
           <BiLogOut  className=" cursor-pointer btn-logout-listChatUser"
           onClick={logout}
         />
@@ -17,7 +17,7 @@ const LogoutButton = () => {
       ) : (
         <span className="loading loading-spinner"></span>
       )}
-      <div className="grid flex-grow place-items-center">
+      <div className="grid flex-grow place-items-center responsiveDivNameAndPicUser">
         <NoChatSelected className=" cursor-pointer "/>
       </div>
     </div>
@@ -30,13 +30,11 @@ const NoChatSelected = () => {
   const {authUser} = useAuthContext();
   return (
     <div className="flex flex-col lg:flex-row">
-      <div className="grid flex-grow place-items-center">
         <img 
             src={authUser.profilePic}
             alt="user avatar" 
             className="imgUserinLogout"
           />
-      </div> 
       <div className="grid flex-grow place-items-center font-bold text-white">{authUser.fullName}</div>
     </div>
   );
