@@ -33,7 +33,7 @@ const MessageInput = () => {
 
   return (
     <form className="px-4 my-3" onSubmit={handleSubmit}>
-        <div className="w-full relative">
+        <div className="w-full relative inpSendMesage">
             <input 
                 type="text" 
                 className="border text-sm rounded-lg block w-Inputmessage p-2.5 bg-gray-700 border-gray-600 text-white" 
