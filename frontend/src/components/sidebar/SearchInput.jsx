@@ -33,7 +33,7 @@ const SearchInput = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button type="submit" className="btn btn-circle bg-violet-500 text-white">
+        <button type="submit" className="editButtonSearch btn btn-circle bg-violet-500 text-white">
             <FcSearch className="w-6 h-6 outline-none"/>
         </button>
     </form>

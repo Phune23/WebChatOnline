@@ -13,7 +13,7 @@ const LogoutButton = () => {
         <div className="grid flex-grow place-items-center responsiveDivLogoutButton">
           <BiLogOut  className=" cursor-pointer btn-logout-listChatUser"
           onClick={logout}
-        />
+          />
         </div> 
       ) : (
         <span className="loading loading-spinner"></span>
@@ -80,7 +80,7 @@ const NoChatSelected = () => {
                     Save
                   </button>
                   <button className="btn editButtonCloseDialogClose" onClick={closeDialog}>
-                    <AiFillCloseCircle className="" />
+                    <AiFillCloseCircle/>
                     Close
                   </button>
                 </div>

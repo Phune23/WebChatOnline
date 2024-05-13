@@ -318,7 +318,15 @@ body{
 .editNameDialogProfile{
     font-size: 25px;
 }
-
+/*============================== btn Search ===============================*/
+.editButtonSearch{
+    box-shadow: 5px 5px rgb(37, 37, 37);
+    border-radius: 50px;
+}
+    .editButtonSearch:hover{
+        background-color: rgb(75, 39, 160);
+        box-shadow: 5px 5px rgb(0, 0, 0);
+    }
 /*============================== edit Messages===============================*/
 .inputSendMesage{
     z-index: 1;

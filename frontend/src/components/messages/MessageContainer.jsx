@@ -55,7 +55,7 @@ const MessageContainer = () => {
                       />
                       </h3>
                       <h3 >Full Name : {selectedConversation.fullName}</h3>
-                      <h3 >GenDer : {selectedConversation.gender}</h3>
+                      <h3 >Gen Der : {selectedConversation.gender}</h3>
                       <form>
                         <div>
                           <button className="btn editButtonCloseDialogShowOrtherUserClose" onClick={closeDialogOrtherUser}>
