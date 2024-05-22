@@ -1,6 +1,6 @@
 # <img width="35" height="35" src="https://cdn-icons-png.freepik.com/512/134/134914.png"> Web Chat Online
 
-`✉ A chat website that connects people with noni and exchange stories. `
+`✉ A chat website that connects people with each other and exchanges interesting stories.`
 
 # 🔗 DepLoy
 Copy `Link` of `Web Chat Online`:
