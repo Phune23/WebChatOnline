@@ -12,10 +12,12 @@ const MessageInput = () => {
 
   const [showEmoji, setShowEmoji] = useState(false);
 
+  const [image, setImage]= useState("");  
+
   const handleEmojiSelect = (emoji) => {
     setMessage(message + emoji.native);
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if(!message) return;
@@ -24,47 +26,58 @@ const MessageInput = () => {
     if(showEmoji){
       setShowEmoji(!showEmoji);
     }
+
     setMessage("");
   };
 
   const sendFile =async (e) => {
-    // console.log(e.target.files);
+    console.log(e.target.files[0]);
+    var render= new FileReader();
+    render.readAsDataURL(e.target.files[0]);
+    render.onload = () => {
+      console.log(render.result); //base64encode string
+      setImage(render.result);
+    };
+    render.onerror = error => {
+      console.log("Error:", error);
+    };
   };
-
+  
   return (
     <form className="px-4 my-3" onSubmit={handleSubmit}>
-        <div className="w-full relative inpSendMesage">
-            <input 
-                type="text" 
-                className="border text-sm rounded-lg block w-Inputmessage p-2.5 bg-gray-700 border-gray-600 text-white" 
-                placeholder="Send a message"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-            />
-            <label className="absolute icon-size inset-y-0 end-16 flex items-center pe-3 btn-sendMessage-ortherChatUser">
-              <input type="file" className="hidden" onChange={sendFile}/>
-              <MdAttachFile />
-            </label>
-            <span
-              className="absolute icon-size inset-y-0 end-9 flex items-center pe-3 btn-sendMessage-ortherChatUser "
-              onClick={() => setShowEmoji(!showEmoji)}
-            >
-              <MdEmojiEmotions />
-            </span>
-            <div className="setBoardEmoji z-[2]">
-              {showEmoji && <div className="">
-                <Picker data={data} 
-                  onEmojiSelect={handleEmojiSelect} 
-                  emojiSize={24}
-                  emojiButtonSize={28}
-                  maxFrequentRows={0}
-                />
-              </div>}
-            </div>
-            <button type="submit" className="absolute icon-size inset-y-0 end-1 flex items-center pe-3 btn-sendMessage-ortherChatUser">
-              {loading ? <div className="loading loading-spinner"></div> : <GrSend />} 
-            </button>
-        </div>
+      <div className="w-full relative inpSendMesage">
+          {image=="" || image==null?"" : <img width={100} height={100} src={image}/>}
+          <input 
+              type="text" 
+              className="border text-sm rounded-lg block w-Inputmessage p-2.5 bg-gray-700 border-gray-600 text-white girdInputMobile" 
+              placeholder="Send a message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+          />
+          <label className="absolute icon-size inset-y-0 end-16 flex items-center pe-3 btn-sendMessage-ortherChatUser">
+          <input type="file" name="file" className="hidden" onChange={sendFile}/>
+            <MdAttachFile />
+          </label>
+          <span
+            className="absolute icon-size inset-y-0 end-9 flex items-center pe-3 btn-sendMessage-ortherChatUser "
+            onClick={() => setShowEmoji(!showEmoji)}
+          >
+            <MdEmojiEmotions />
+          </span>
+          <div className="setBoardEmoji z-[2]">
+            {showEmoji && <div className="">
+              <Picker data={data} 
+                onEmojiSelect={handleEmojiSelect} 
+                emojiSize={24}
+                emojiButtonSize={28}
+                maxFrequentRows={0}
+              />
+            </div>}
+          </div>
+          <button type="submit" className="absolute icon-size inset-y-0 end-1 flex items-center pe-3 btn-sendMessage-ortherChatUser">
+            {loading ? <div className="loading loading-spinner"></div> : <GrSend />} 
+          </button>
+      </div>
     </form>
     
   );

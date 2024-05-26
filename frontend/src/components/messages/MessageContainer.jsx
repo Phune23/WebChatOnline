@@ -25,7 +25,7 @@ const MessageContainer = () => {
   },[setSelectedConversation]);
 
   return (
-    <div className="md:min-w-[450px] flex flex-col responsiveMessageContainer">
+    <div className=" flex flex-col minMaxMessageContainer responsiveMobileChat responsiveMobileSizeBoxChat">
         {!selectedConversation ? (
           <NoChatSelected/> 
         ) : ( 
@@ -70,7 +70,7 @@ const MessageContainer = () => {
               )}
             </div>
 
-            <Messages className="responsiveShowMessageBubble"/>
+            <Messages/>
             <MessageInput/> 
           </>
         )}

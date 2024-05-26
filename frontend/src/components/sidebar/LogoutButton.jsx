@@ -67,18 +67,18 @@ const NoChatSelected = () => {
               <h3 >Full Name : {authUser.fullName}</h3>
               <form>
                 <div>
-                <input 
+                {/* <input 
                     type="text" 
                     placeholder="Full Name" 
                     className="input"
-                  />
+                  /> */}
                 </div>
                 <br/>
                 <div className="fload-end">
-                  <button className="btn editButtonCloseDialogSave" type="submit">
+                  {/* <button className="btn editButtonCloseDialogSave" type="submit">
                     <FaRegSave />
                     Save
-                  </button>
+                  </button> */}
                   <button className="btn editButtonCloseDialogClose" onClick={closeDialog}>
                     <AiFillCloseCircle/>
                     Close

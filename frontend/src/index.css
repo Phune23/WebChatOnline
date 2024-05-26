@@ -126,6 +126,24 @@ body{
     } */
     body{
         overflow: hidden;
+        
+    }
+    .MobileHome{
+        grid-template-columns: repeat(auto-fit, 500px);
+    }
+    /* responsive list user */
+    .minMaxResponMessageContainerMobie{
+        min-width: 305px;
+        max-width: 450px;
+        height: 500px;
+        overflow-y: auto;
+    }
+
+    .responsiveMobieListChat{
+        max-width: 450px;
+        max-height: 550px;
+        overflow-y: auto;
+        display: grid;
     }
     .responsiveRoot{
         padding: 0;
@@ -136,6 +154,27 @@ body{
         height: 567px;
         width: 475px;
         padding: 25px;
+    }
+    .responsiveMobileSidebar{
+        display: flex;
+        max-height: 567px;
+        max-width: 375px;
+        padding: 25px;
+    }
+    /* gird */
+    .girdInputMobile{
+       width: 155px;
+    }
+    .responsiveMobileSizeBoxChat{
+        display: flex;
+        max-height: 525px;
+        max-width: 355px;
+        padding: 25px;
+    }
+    .responsiveSizeChatBox{
+        font-size: small;
+        max-height: 385px;
+        max-width: 305px;
     }
     .responsiveSearchInput .input{
         width: 200px;
@@ -154,9 +193,7 @@ body{
         height: 50px;
     }
 /*===============================all MessageContainer===============================*/
-    /* .responsiveMessageContainer{
-        align-items: center;
-    } */
+
     .responsiveShowMessageBubble{
         height: 367px;
         width: 475px;
@@ -330,4 +367,13 @@ body{
 /*============================== edit Messages===============================*/
 .inputSendMesage{
     z-index: 1;
+}
+/* responsive message */
+.responScreenMessage{
+    word-wrap: break-word;
+}
+/* responsive list user */
+.minMaxMessageContainer{
+    width: 450px;
+    height: auto;
 }

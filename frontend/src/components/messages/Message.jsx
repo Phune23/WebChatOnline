@@ -17,7 +17,7 @@ const Message = ({message}) => {
 
   return (
     <div className={`chat ${chatClassName}`}>
-      <div className="chat-header text-white nameUserInchat">
+      <div className="chat-header text-white nameUserInchat ">
         {nameUser}
       </div>
       <div className="chat-image avatar">
@@ -26,7 +26,7 @@ const Message = ({message}) => {
           </div>
       </div>
 
-      <div className={`message-bubble-ortherChatUser chat-bubble text-white ${bubblebgColor} ${shakeClass}`}>
+      <div className={`message-bubble-ortherChatUser responScreenMessage chat-bubble text-white ${bubblebgColor} ${shakeClass}`}>
           {message.message}
       </div>
       <div className="text-white chat-footer opacity-50 text-xs flex gap-1 items-center">
