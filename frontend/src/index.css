@@ -364,6 +364,10 @@ body{
         background-color: rgb(75, 39, 160);
         box-shadow: 5px 5px rgb(0, 0, 0);
     }
+/*============================== list Search ===============================*/  
+.bg-listSearch{
+    background-color: #1D232A;
+}
 /*============================== edit Messages===============================*/
 .inputSendMesage{
     z-index: 1;
