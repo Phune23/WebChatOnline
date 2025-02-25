@@ -14,6 +14,10 @@ const MessageInput = () => {
   const [image, setImage] = useState("");
 
   const handleEmojiSelect = (emoji) => {
+    if (message.length + emoji.native.length > 255) {
+      toast.error("Message cannot exceed 255 characters");
+      return;
+    }
     setMessage(message + emoji.native);
   };
 
