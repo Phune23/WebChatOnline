@@ -3,7 +3,7 @@ import Message from "./Message";
 import useGetMessages from "../../hooks/useGetMessages";
 import MessageSkeleton from "../skeletons/MessageSkeleton";
 import useListenMessages from "../../hooks/useListenMessages";
-import { FaArrowDown } from "react-icons/fa";
+import { ImArrowDown } from "react-icons/im";
 
 const Messages = () => {
   const { messages, loading } = useGetMessages();
@@ -48,10 +48,10 @@ const Messages = () => {
 
       {showScrollButton && (
         <button
-          className="fixed bottom-16 left-2/3 transform -translate-x-1/2 bg-violet-500 text-white p-2 rounded-full shadow-lg z-50"
+          className="button_scroll fixed bottom-16 left-2/3 editButtonSearch btn btn-circle bg-violet-500 text-white z-50"
           onClick={scrollToBottom}
         >
-          <FaArrowDown />
+          <ImArrowDown className="w-6 h-6 text-violet-200" />
         </button>
       )}
     </div>
