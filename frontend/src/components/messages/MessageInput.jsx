@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { GrSend } from "react-icons/gr";
 import { MdAttachFile } from "react-icons/md";
 import { MdEmojiEmotions } from "react-icons/md";
+import { AiFillCloseCircle } from "react-icons/ai";
 import useSendMessage from "../../hooks/useSendMessage";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
@@ -11,7 +12,7 @@ const MessageInput = () => {
   const [message, setMessage] = useState("");
   const { loading, sendMessage } = useSendMessage();
   const [showEmoji, setShowEmoji] = useState(false);
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
 
   const handleEmojiSelect = (emoji) => {
     if (message.length + emoji.native.length > 255) {
@@ -32,34 +33,61 @@ const MessageInput = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (image) {
+      toast.error("The file sending feature is under development and is currently unavailable.");
+      return;
+    }
     if (!message) return;
     if (message.length > 255) {
       return toast.error("Message cannot exceed 255 characters");
     }
-    await sendMessage(message);
+    const messageData = {
+      text: message || "", // Ensure text is a string
+      image: image || null, // Ensure image is null if not provided
+    };
+    await sendMessage(messageData);
     if (showEmoji) {
       setShowEmoji(!showEmoji);
     }
     setMessage("");
+    setImage(null);
   };
 
   const sendFile = async (e) => {
-    console.log(e.target.files[0]);
-    var render = new FileReader();
-    render.readAsDataURL(e.target.files[0]);
-    render.onload = () => {
-      console.log(render.result); // base64encode string
-      setImage(render.result);
-    };
-    render.onerror = (error) => {
-      console.log("Error:", error);
-    };
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        setImage(reader.result);
+        // Reset the input value to allow selecting the same file again
+        e.target.value = null;
+      };
+      reader.onerror = (error) => {
+        console.log("Error:", error);
+      };
+    }
+  };
+
+  const removeImage = () => {
+    setImage(null);
   };
 
   return (
     <form className="px-4 my-3" onSubmit={handleSubmit}>
+      {image && (
+        <div className="relative mb-2">
+          <img src={image} alt="Selected" className="max-w-full h-auto" />
+          <button
+            type="button"
+            className="absolute top-0 right-0 text-white bg-red-500 rounded-full p-1"
+            onClick={removeImage}
+          >
+            <AiFillCloseCircle size={20} />
+          </button>
+        </div>
+      )}
       <div className="w-full relative inpSendMesage">
-        {image == "" || image == null ? "" : <img width={100} height={100} src={image} />}
         <div className="relative w-full">
           <input
             type="text"
@@ -70,7 +98,7 @@ const MessageInput = () => {
           />
         </div>
         <label className="absolute text-xs text-gray-400 inset-y-0 end-28 flex items-center pe-3 btn-sendMessage-ortherChatUser">
-            {message.length}/255
+          {message.length}/255
         </label>
         <label className="absolute icon-size inset-y-0 end-20 flex items-center pe-3 btn-sendMessage-ortherChatUser">
           <input type="file" name="file" className="hidden" onChange={sendFile} />
