@@ -307,6 +307,20 @@ body {
     box-shadow: 5px 5px rgb(48, 48, 48);
     color: white;
 }
+.editButtonYesDialogShowOrtherUserClose {
+    top: 50px;
+    font-size: 20px;
+    margin: 15px;
+    background-color: rgb(115, 231, 121);
+    box-shadow: 5px 5px rgb(83, 83, 83);
+    color: black;
+}
+.editButtonYesDialogShowOrtherUserClose:hover {
+    font-size: 25px;
+    background-color: rgb(52, 151, 88);
+    box-shadow: 5px 5px rgb(48, 48, 48);
+    color: white;
+}
 .editNameDialogProfile {
     font-size: 25px;
 }
@@ -317,6 +331,16 @@ body {
     border-radius: 50px;
 }
 .editButtonSearch:hover {
+    background-color: rgb(75, 39, 160);
+    box-shadow: 5px 5px rgb(0, 0, 0);
+}
+
+/*============================== btn hiden message ===============================*/
+.editButtonHidenMessage {
+    box-shadow: 5px 5px rgb(37, 37, 37);
+    border-radius: 50px;
+}
+.editButtonHidenMessage:hover {
     background-color: rgb(75, 39, 160);
     box-shadow: 5px 5px rgb(0, 0, 0);
 }
@@ -340,4 +364,16 @@ body {
 .minMaxMessageContainer {
     width: 450px;
     height: auto;
+}
+
+.message-container {
+    display: flex;
+    align-items: center;
+}
+
+.hide-button {
+    margin-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 30px;
 }
