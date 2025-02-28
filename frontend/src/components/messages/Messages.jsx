@@ -1,23 +1,10 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Message from "./Message";
 import useGetMessages from "../../hooks/useGetMessages";
 import MessageSkeleton from "../skeletons/MessageSkeleton";
 import useListenMessages from "../../hooks/useListenMessages";
 import { ImArrowDown } from "react-icons/im";
-import axios from "axios";
-
-const useHideMessage = () => {
-  const hideMessage = useCallback(async (messageId) => {
-    //console.log("Sending request to hide message with ID:", messageId); // Add this line
-    try {
-      await axios.patch(`/api/messages/hide/${messageId}`);
-    } catch (error) {
-      console.error("Failed to hide message:", error);
-    }
-  }, []);
-
-  return hideMessage;
-};
+import useHideMessage from "../../hooks/useHideMessage"; // Import the custom hook
 
 const Messages = () => {
   const { messages, loading, setMessages } = useGetMessages();
@@ -47,12 +34,14 @@ const Messages = () => {
 
   const handleHideMessage = async (messageId) => {
     //console.log("Hiding message with ID:", messageId); // Add this line
-    await hideMessage(messageId);
+    // Cập nhật state ngay lập tức
     setMessages((prevMessages) =>
       prevMessages.map((message) =>
         message._id === messageId ? { ...message, hidden: true } : message
       )
     );
+    // Gọi hàm hideMessage để cập nhật trên server
+    await hideMessage(messageId);
   };
 
   return (
