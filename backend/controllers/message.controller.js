@@ -2,7 +2,6 @@ import Conversation from "../models/conversation.model.js"
 import Message from "../models/message.model.js"
 import { getReceiverSocketId, io } from "../socket/socket.js";
 
-
 export const sendMessage = async (req,res) => {
     try {
         const {message} = req.body;
@@ -71,5 +70,22 @@ export const getMessages = async (req, res) => {
     } catch (error) {
         console.log("Error in getMessages controller: ", error.message);
         res.status(500).json({error:"Internal server error"});
+    }
+};
+
+export const hideMessage = async (req, res) => {
+    try {
+        const { id: messageId } = req.params;
+
+        const message = await Message.findByIdAndUpdate(messageId, { hidden: true }, { new: true });
+
+        if (!message) {
+            return res.status(404).json({ error: "Message not found" });
+        }
+
+        res.status(200).json(message);
+    } catch (error) {
+        console.log("Error in hideMessage controller: ", error.message);
+        res.status(500).json({ error: "Internal server error" });
     }
 };

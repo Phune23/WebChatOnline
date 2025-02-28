@@ -1,11 +1,12 @@
 import React from "react";
-import {useAuthContext} from "../../context/AuthContext";
+import { useAuthContext } from "../../context/AuthContext";
 import useConversation from "../../zustand/useConversation";
-import {extractTime} from "../../utils/extractTime";
+import { extractTime } from "../../utils/extractTime";
+import { AiFillEyeInvisible } from "react-icons/ai";
 
-const Message = ({message}) => {
-  const {authUser} = useAuthContext();
-  const {selectedConversation} = useConversation();
+const Message = ({ message, onHide }) => {
+  const { authUser } = useAuthContext();
+  const { selectedConversation } = useConversation();
   const fromMe = message.senderId === authUser._id;
   const formattedTime = extractTime(message.createdAt);
   const chatClassName = fromMe ? "chat-end" : "chat-start";
@@ -21,16 +22,25 @@ const Message = ({message}) => {
         {nameUser}
       </div>
       <div className="chat-image avatar">
-          <div className="w-10 rounded-full">
+        <div className="w-10 rounded-full">
           <img src={profilePic} alt="user avatar" />
-          </div>
+        </div>
       </div>
 
-      <div className={`message-bubble-ortherChatUser responScreenMessage chat-bubble text-white ${bubblebgColor} ${shakeClass}`}>
+      {!message.hidden ? (
+        <div className={`message-bubble-ortherChatUser responScreenMessage chat-bubble text-white ${bubblebgColor} ${shakeClass}`}>
           {message.message}
-      </div>
+          {fromMe && (
+            <button onClick={() => onHide(message._id)} className="ml-2 text-red-500">
+              <AiFillEyeInvisible />
+            </button>
+          )}
+        </div>
+      ) : (
+        <div className="text-gray-500 italic">This message has been hidden</div>
+      )}
       <div className="text-white chat-footer opacity-50 text-xs flex gap-1 items-center">
-          Send at {formattedTime}
+        Send at {formattedTime}
       </div>
     </div>
   );
