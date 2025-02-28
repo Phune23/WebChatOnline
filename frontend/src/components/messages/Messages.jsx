@@ -8,7 +8,7 @@ import axios from "axios";
 
 const useHideMessage = () => {
   const hideMessage = useCallback(async (messageId) => {
-    console.log("Sending request to hide message with ID:", messageId); // Add this line
+    //console.log("Sending request to hide message with ID:", messageId); // Add this line
     try {
       await axios.patch(`/api/messages/hide/${messageId}`);
     } catch (error) {
