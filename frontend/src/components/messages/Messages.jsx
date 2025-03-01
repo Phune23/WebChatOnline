@@ -6,7 +6,7 @@ import useListenMessages from "../../hooks/useListenMessages";
 import { ImArrowDown } from "react-icons/im";
 import useHideMessage from "../../hooks/useHideMessage"; // Import hook
 
-const Messages = () => {
+const Messages = ({ socket }) => {
   const { messages, loading, setMessages } = useGetMessages();
   useListenMessages();
   const lastMessageRef = useRef();
@@ -57,7 +57,7 @@ const Messages = () => {
         messages.length > 0 &&
         messages.map((message, index) => (
           <div key={message._id} ref={index === messages.length - 1 ? lastMessageRef : null}>
-            <Message message={message} onHide={handleHideMessage} />
+            <Message message={message} onHide={handleHideMessage} socket={socket} />
           </div>
         ))}
 

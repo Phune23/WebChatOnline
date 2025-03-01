@@ -6,7 +6,9 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { LuMessageSquareDashed } from "react-icons/lu";
 import { RiChatOffFill } from "react-icons/ri";
 
-const Message = ({ message, onHide }) => {
+const Message = ({ message, onHide, socket }) => {
+  //console.log('Socket:', socket); // Kiểm tra giá trị của socket
+
   const { authUser } = useAuthContext();
   const { selectedConversation } = useConversation();
   const fromMe = message.senderId === authUser._id;
@@ -29,6 +31,10 @@ const Message = ({ message, onHide }) => {
     onHide(message._id);
     setIsHidden(true);
     setShowConfirmDialog(false);
+    // Emit an event to notify other users
+    if (socket) {
+      socket.emit("messageHidden", { messageId: message._id });
+    }
   };
 
   const cancelHideMessage = () => {
@@ -38,6 +44,21 @@ const Message = ({ message, onHide }) => {
   useEffect(() => {
     setIsHidden(message.hidden);
   }, [message.hidden]);
+
+  useEffect(() => {
+    if (socket) {
+      // Listen for messageHidden event
+      socket.on("messageHidden", ({ messageId }) => {
+        if (messageId === message._id) {
+          setIsHidden(true);
+        }
+      });
+
+      return () => {
+        socket.off("messageHidden");
+      };
+    }
+  }, [socket, message._id]);
 
   return (
     <div className={`chat ${chatClassName}`}>
