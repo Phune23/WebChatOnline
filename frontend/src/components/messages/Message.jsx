@@ -29,6 +29,10 @@ const Message = ({ message, onHide, socket }) => {
     onHide(message._id);
     setIsHidden(true);
     setShowConfirmDialog(false);
+    // Emit an event to notify other users
+    if (socket) {
+      socket.emit("messageHidden", { messageId: message._id });
+    }
   };
 
   const cancelHideMessage = () => {
@@ -38,6 +42,21 @@ const Message = ({ message, onHide, socket }) => {
   useEffect(() => {
     setIsHidden(message.hidden);
   }, [message.hidden]);
+
+  useEffect(() => {
+    if (socket) {
+      // Listen for messageHidden event
+      socket.on("messageHidden", ({ messageId }) => {
+        if (messageId === message._id) {
+          setIsHidden(true);
+        }
+      });
+
+      return () => {
+        socket.off("messageHidden");
+      };
+    }
+  }, [socket, message._id]);
 
   return (
     <div className={`chat ${chatClassName}`}>

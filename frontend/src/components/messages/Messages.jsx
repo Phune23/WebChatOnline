@@ -5,6 +5,7 @@ import MessageSkeleton from "../skeletons/MessageSkeleton";
 import useListenMessages from "../../hooks/useListenMessages";
 import { ImArrowDown } from "react-icons/im";
 import useHideMessage from "../../hooks/useHideMessage"; // Import hook
+import { useSocketContext } from "../../context/SocketContext"; // Import useSocketContext
 
 const Messages = () => {
   const { messages, loading, setMessages } = useGetMessages();
@@ -13,6 +14,7 @@ const Messages = () => {
   const containerRef = useRef();
   const [showScrollButton, setShowScrollButton] = useState(false);
   const hideMessage = useHideMessage(); // Sử dụng hook
+  const { socket } = useSocketContext(); // Lấy socket từ context
 
   useEffect(() => {
     setTimeout(() => {
@@ -57,7 +59,7 @@ const Messages = () => {
         messages.length > 0 &&
         messages.map((message, index) => (
           <div key={message._id} ref={index === messages.length - 1 ? lastMessageRef : null}>
-            <Message message={message} onHide={handleHideMessage}/>
+            <Message message={message} onHide={handleHideMessage} socket={socket} />
           </div>
         ))}
 

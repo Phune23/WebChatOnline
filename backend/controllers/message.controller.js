@@ -80,6 +80,12 @@ export const hideMessage = async (req, res) => {
             return res.status(404).json({ error: "Message not found" });
         }
 
+        // Phát sự kiện WebSocket để thông báo cho các người dùng khác
+        const receiverSocketId = getReceiverSocketId(message.receiverId);
+        if (receiverSocketId) {
+            io.to(receiverSocketId).emit("messageHidden", { messageId });
+        }
+
         res.status(200).json(message);
     } catch (error) {
         console.log("Error in hideMessage controller: ", error.message);
