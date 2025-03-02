@@ -242,6 +242,13 @@ body {
     box-shadow: 5px 5px rgb(48, 48, 48);
     color: white;
 }
+.editButtonLoadingDialogSave {
+    top: 50px;
+    font-size: 20px;
+    margin: 15px;
+    background-color: rgb(99, 99, 236);
+    box-shadow: 5px 5px rgb(83, 83, 83);
+}
 .editButtonCloseDialogClose {
     top: 50px;
     font-size: 20px;
