@@ -6,7 +6,7 @@ import NoChatSelected from "./NoChatSelected";
 const LogoutButton = () => {
   const { loading, logout } = useLogout();
   return (
-    <div className="mt-auto areaLogout flex flex-col w-full lg:flex-row responsiveLogoutButton">
+    <div className="mt-auto areaLogout flex flex-col w-full lg:flex-row">
       {!loading ? (
         <div className="grid flex-grow place-items-center responsiveDivLogoutButton">
           <BiLogOut className="cursor-pointer btn-logout-listChatUser" onClick={logout} />
@@ -14,7 +14,7 @@ const LogoutButton = () => {
       ) : (
         <span className="loading loading-spinner"></span>
       )}
-      <div className="grid flex-grow place-items-center responsiveDivNameAndPicUser">
+      <div className="grid flex-grow place-items-center">
         <NoChatSelected className="cursor-pointer" />
       </div>
     </div>

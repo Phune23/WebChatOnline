@@ -94,8 +94,9 @@ const NoChatSelected = () => {
         <img src={authUser.profilePic} alt="user avatar" className="imgUserinLogout" />
       </button>
       <div className="grid flex-grow place-items-center font-bold text-white">{authUser.fullName}</div>
+      <ToastContainer />
       {isOpen && userInfo && (
-        <div className="dialog-overlay z-[3]" onClick={closeDialog}>
+        <div className="dialog-overlay z-[3] " onClick={closeDialog}>
           <div className="dialog" onClick={(e) => e.stopPropagation()}>
             <div className="dialog-content">
               <h2 className="text-black editNameDialogProfile">Edit your profile</h2>
@@ -177,7 +178,6 @@ const NoChatSelected = () => {
           </div>
         </div>
       )}
-      <ToastContainer />
     </div>
   );
 };

@@ -54,7 +54,7 @@ const SearchInput = () => {
 
   return (
     <div className="relative">
-      <form onSubmit={handleSubmit} className="flex items-center gap-2 responsiveSearchInput relative">
+      <form onSubmit={handleSubmit} className="flex items-center gap-2 relative">
         <input
           type="text"
           placeholder="Search.."

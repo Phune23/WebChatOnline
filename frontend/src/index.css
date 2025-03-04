@@ -5,6 +5,7 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
 /* full screen */
 html, body, #root {
   height: 100%;
@@ -30,7 +31,7 @@ html, body, #root {
 }
 
 .w-3_4 {
-    width: 75%;
+  width: 75%;
 }
 
 .flex-1 {
@@ -39,193 +40,189 @@ html, body, #root {
 
 /* ------------------- */
 body {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("/bg.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("/bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 /* dark mode looking scrollbar */
 ::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
-    background: #555;
+  background: #555;
 }
 ::-webkit-scrollbar-thumb {
-    background: #4a1474;
-    border-radius: 5px;
+  background: #4a1474;
+  border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #242424;
+  background: #242424;
 }
 
 /* SHAKE ANIMATION ON HORIZONTAL DIRECTION */
 .shake {
-    animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) 0.2s both;
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-    perspective: 1000px;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) 0.2s both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 @keyframes shake {
-    10%, 90% {
-        transform: translate3d(-1px, 0, 0);
-    }
-    20%, 80% {
-        transform: translate3d(2px, 0, 0);
-    }
-    30%, 50%, 70% {
-        transform: translate3d(-4px, 0, 0);
-    }
-    40%, 60% {
-        transform: translate3d(4px, 0, 0);
-    }
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
 }
 
 /* input message */
 .w-Inputmessage {
-    width: 300px;
+  width: 300px;
 }
 .icon-size {
-    font-size: 25px;
+  font-size: 25px;
 }
 
 /* area logout */
 .areaLogout {
-    padding-top: 20px;
+  padding-top: 20px;
 }
 
 /* button dropdow in chat orther user || name user chat */
 .btn-profile-ortherChatUser {
-    color: white;
-    margin-left: 10px;
-    font-size: 25px;
-    color: #b69dcb;
-    vertical-align: middle;
+  color: white;
+  margin-left: 10px;
+  font-size: 25px;
+  color: #b69dcb;
+  vertical-align: middle;
 }
 .btn-profile-ortherChatUser:hover {
-    color: #32124e;
+  color: #32124e;
 }
 
 /* button logout in chat list user */
 .btn-logout-listChatUser {
-    font-size: 30px;
-    color: #b69dcb;
+  font-size: 30px;
+  color: #b69dcb;
 }
 .btn-logout-listChatUser:hover {
-    color: #8800ff;
+  color: #8800ff;
 }
 
 /* dropdow in list user */
 .btn-sendMessage-ortherChatUser {
-    color: #b69dcb;
+  color: #b69dcb;
 }
 .btn-sendMessage-ortherChatUser:hover {
-    color: #8800ff;
+  color: #8800ff;
 }
 
 /* img user near button logout */
 .imgUserinLogout {
-    padding-right: 10px;
-    width: 45px;
+  padding-right: 10px;
+  width: 45px;
 }
 
 .setBoardEmoji {
-    position: absolute;
-    top: -440px; 
-    left: 90px;
+  position: absolute;
+  top: -440px; 
+  left: 90px;
 }
 
 .mobile {
-    width: auto;
+  width: auto;
 }
 
 /* ===================== Responsive design ===================== */
 /* Mobile: width < 740px */
 @media only screen and (max-width: 46.1875em) {
-    body {
-        overflow: hidden;
-    }
-    .MobileHome {
-        grid-template-columns: repeat(auto-fit, 500px);
-    }
-    /* responsive list user */
-    .minMaxResponMessageContainerMobie {
-        min-width: 305px;
-        max-width: 450px;
-        overflow-y: auto;
-    }
-    .responsiveMobieListChat {
-        max-width: 450px;
-        overflow-y: auto;
-        display: grid;
-    }
-    .responsiveRoot {
-        padding: 0;
-        margin: 0;
-        border: none;
-    }
-    .responsiveHone {
-        height: 567px;
-        padding: 25px;
-    }
-    .responsiveMobileSidebar {
-        display: flex;
-        max-height: 567px;
-        max-width: 375px;
-        padding: 25px;
-    }
-    /* grid */
-    .girdInputMobile {
-        width: 155px;
-    }
-    .responsiveMobileSizeBoxChat {
-        display: flex;
-        max-height: 525px;
-        max-width: 355px;
-        padding: 25px;
-    }
-    .responsiveSizeChatBox {
-        font-size: small;
-        max-height: 385px;
-        max-width: 305px;
-    }
-    .responsiveSearchInput .input {
-        width: 200px;
-    }
-    .responsiveLogoutButton {
-        width: 200px;
-        flex-direction: row;
-    }
-    .responsiveDivLogoutButton {
-        width: 40px;
-    }
-    .responsiveDivNameAndPicUser {
-        width: 80px;
-        height: 50px;
-    }
-    /* responsive message */
-    .responScreenMessage {
-        word-wrap: break-word;
-    }
-    .minMaxMessageContainer {
-        width: 450px;
-        height: auto;
-    }
+  body {
+    overflow: hidden;
+  }
+  .MobileHome {
+    grid-template-columns: repeat(auto-fit, 500px);
+  }
+  /* responsive list user */
+  .minMaxResponMessageContainerMobie {
+    overflow-y: auto;
+  }
+  .responsiveMobieListChat {
+    max-width: 450px;
+    overflow-y: auto;
+    display: grid;
+  }
+  .responsiveRoot {
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
+  .responsiveHone {
+    height: 567px;
+    padding: 25px;
+  }
+  .responsiveMobileSidebar {
+    display: flex;
+    max-height: 567px;
+    max-width: 375px;
+    padding: 25px;
+  }
+  /* grid */
+  .girdInputMobile {
+    width: 155px;
+  }
+  .responsiveMobileSizeBoxChat {
+    display: flex;
+    max-height: 525px;
+    max-width: 355px;
+    padding: 25px;
+  }
+  .responsiveSizeChatBox {
+    font-size: small;
+  }
+  .responsiveSearchInput .input {
+    width: 200px;
+  }
+  .responsiveLogoutButton {
+    width: 200px;
+    flex-direction: row;
+  }
+  .responsiveDivLogoutButton {
+    width: 40px;
+  }
+  .responsiveDivNameAndPicUser {
+    width: 80px;
+    height: 50px;
+  }
+  /* responsive message */
+  .responScreenMessage {
+    word-wrap: break-word;
+  }
+  .minMaxMessageContainer {
+    width: 450px;
+    height: auto;
+  }
 }
 
 /* Tablet: width >= 740px and width < 1024px */
 @media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
-    .responsiveLogoutButton {
-        flex-direction: row;
-    }
+  .responsiveLogoutButton {
+    flex-direction: row;
+  }
 }
 
 /* PC: width >= 1024px */
 @media only screen and (min-width: 64em) {
-    .responsiveLogoutButton {
-        flex-direction: row;
-    }
+  .responsiveLogoutButton {
+    flex-direction: row;
+  }
 }
 
 /*==============================dialog edit Profile===============================*/
@@ -246,170 +243,173 @@ body {
     border-radius: 5px;
     z-index: 999; /* Make sure it's on top of other content */
     position: relative;
+    width: 90%; /* Adjust width for responsiveness */
+    max-width: 500px; /* Maximum width */
 }
 .dialog-content {
-    text-align: center;
+  text-align: center;
 }
 .editImgProfile {
-    width: 150px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 20px;
+  width: 150px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
 }
 .editButtonCloseDialogSave {
-    top: 50px;
-    font-size: 20px;
-    margin: 15px;
-    background-color: rgb(99, 99, 236);
-    box-shadow: 5px 5px rgb(83, 83, 83);
-    color: black;
+  top: 50px;
+  font-size: 20px;
+  margin: 15px;
+  background-color: rgb(99, 99, 236);
+  box-shadow: 5px 5px rgb(83, 83, 83);
+  color: black;
 }
 .editButtonCloseDialogSave:hover {
-    font-size: 25px;
-    background-color: rgb(27, 27, 129);
-    box-shadow: 5px 5px rgb(48, 48, 48);
-    color: white;
+  font-size: 25px;
+  background-color: rgb(27, 27, 129);
+  box-shadow: 5px 5px rgb(48, 48, 48);
+  color: white;
 }
 .editButtonLoadingDialogSave {
-    top: 50px;
-    font-size: 20px;
-    margin: 15px;
-    background-color: rgb(99, 99, 236);
-    box-shadow: 5px 5px rgb(83, 83, 83);
+  top: 50px;
+  font-size: 20px;
+  margin: 15px;
+  background-color: rgb(99, 99, 236);
+  box-shadow: 5px 5px rgb(83, 83, 83);
 }
 .editButtonCloseDialogClose {
-    top: 50px;
-    font-size: 20px;
-    margin: 15px;
-    background-color: rgb(231, 115, 115);
-    box-shadow: 5px 5px rgb(83, 83, 83);
-    color: black;
+  top: 50px;
+  font-size: 20px;
+  margin: 15px;
+  background-color: rgb(231, 115, 115);
+  box-shadow: 5px 5px rgb(83, 83, 83);
+  color: black;
 }
 .editButtonCloseDialogClose:hover {
-    font-size: 25px;
-    background-color: rgb(151, 52, 52);
-    box-shadow: 5px 5px rgb(48, 48, 48);
-    color: white;
+  font-size: 25px;
+  background-color: rgb(151, 52, 52);
+  box-shadow: 5px 5px rgb(48, 48, 48);
+  color: white;
 }
 .editNameDialogProfile {
-    font-size: 25px;
+  font-size: 25px;
 }
 
 /*==============================dialog show Profile orther user===============================*/
 .dialogShowOrtherUser-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .dialogShowOrtherUser {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    z-index: 999; /* Make sure it's on top of other content */
-    position: relative;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  z-index: 999; /* Make sure it's on top of other content */
+  position: relative;
+  width: 90%; /* Adjust width for responsiveness */
+  max-width: 500px; /* Maximum width */
 }
 .dialogShowOrtherUser-content {
-    text-align: center;
-    width: 400px;
-    height: 400px;
+  text-align: center;
+  width: 100%;
 }
 .editImgOrtherProfile {
-    width: 150px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 20px;
+  width: 150px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
 }
 .editButtonCloseDialogShowOrtherUserClose {
-    top: 50px;
-    font-size: 20px;
-    margin: 15px;
-    background-color: rgb(231, 115, 115);
-    box-shadow: 5px 5px rgb(83, 83, 83);
-    color: black;
+  top: 50px;
+  font-size: 20px;
+  margin: 15px;
+  background-color: rgb(231, 115, 115);
+  box-shadow: 5px 5px rgb(83, 83, 83);
+  color: black;
 }
 .editButtonCloseDialogShowOrtherUserClose:hover {
-    font-size: 25px;
-    background-color: rgb(151, 52, 52);
-    box-shadow: 5px 5px rgb(48, 48, 48);
-    color: white;
+  font-size: 25px;
+  background-color: rgb(151, 52, 52);
+  box-shadow: 5px 5px rgb(48, 48, 48);
+  color: white;
 }
 .editButtonYesDialogShowOrtherUserClose {
-    top: 50px;
-    font-size: 20px;
-    margin: 15px;
-    background-color: rgb(115, 231, 121);
-    box-shadow: 5px 5px rgb(83, 83, 83);
-    color: black;
+  top: 50px;
+  font-size: 20px;
+  margin: 15px;
+  background-color: rgb(115, 231, 121);
+  box-shadow: 5px 5px rgb(83, 83, 83);
+  color: black;
 }
 .editButtonYesDialogShowOrtherUserClose:hover {
-    font-size: 25px;
-    background-color: rgb(52, 151, 88);
-    box-shadow: 5px 5px rgb(48, 48, 48);
-    color: white;
+  font-size: 25px;
+  background-color: rgb(52, 151, 88);
+  box-shadow: 5px 5px rgb(48, 48, 48);
+  color: white;
 }
 .editNameDialogProfile {
-    font-size: 25px;
+  font-size: 25px;
 }
 
 /*============================== btn Search ===============================*/
 .editButtonSearch {
-    box-shadow: 5px 5px rgb(37, 37, 37);
-    border-radius: 50px;
+  box-shadow: 5px 5px rgb(37, 37, 37);
+  border-radius: 50px;
 }
 .editButtonSearch:hover {
-    background-color: rgb(75, 39, 160);
-    box-shadow: 5px 5px rgb(0, 0, 0);
+  background-color: rgb(75, 39, 160);
+  box-shadow: 5px 5px rgb(0, 0, 0);
 }
 
 /*============================== btn hiden message ===============================*/
 .editButtonHidenMessage {
-    box-shadow: 5px 5px rgb(37, 37, 37);
-    border-radius: 50px;
+  box-shadow: 5px 5px rgb(37, 37, 37);
+  border-radius: 50px;
 }
 .editButtonHidenMessage:hover {
-    background-color: rgb(75, 39, 160);
-    box-shadow: 5px 5px rgb(0, 0, 0);
+  background-color: rgb(75, 39, 160);
+  box-shadow: 5px 5px rgb(0, 0, 0);
 }
 
 /*============================== list Search ===============================*/  
 .bg-listSearch {
-    background-color: #1D232A;
+  background-color: #1D232A;
 }
 
 /*============================== edit Messages===============================*/
 .inputSendMesage {
-    z-index: 1;
+  z-index: 1;
 }
 
 /* responsive message */
 .responScreenMessage {
-    word-wrap: break-word;
+  word-wrap: break-word;
 }
 
 /* responsive list user */
 .minMaxMessageContainer {
-    width: 450px;
-    height: auto;
+  width: 450px;
+  height: auto;
 }
 
 .message-container {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .hide-button {
-    margin-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width: 30px;
+  margin-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 30px;
 }
 /*============================== form group ===============================*/
 .form-group {
