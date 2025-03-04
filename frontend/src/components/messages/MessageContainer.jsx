@@ -7,8 +7,7 @@ import { useAuthContext } from "../../context/AuthContext";
 import { AiFillCloseCircle } from "react-icons/ai";
 
 const MessageContainer = () => {
-  const {selectedConversation, setSelectedConversation} = useConversation();
-  
+  const { selectedConversation, setSelectedConversation } = useConversation();
   const [isOpenOrtherUser, setIsOpenOrtherUser] = useState(false);
 
   const openDialogOrtherUser = () => {
@@ -20,85 +19,92 @@ const MessageContainer = () => {
   };
 
   useEffect(() => {
-    //cleaup function (unmounts)
+    // Cleanup function (unmounts)
     return () => setSelectedConversation(null);
-  },[setSelectedConversation]);
+  }, [setSelectedConversation]);
 
   return (
-    <div className=" flex flex-col minMaxMessageContainer responsiveMobileChat responsiveMobileSizeBoxChat">
-        {!selectedConversation ? (
-          <NoChatSelected/> 
-        ) : ( 
-          <>
-            {/* Header */}
-            <div className="bg-violet-600 px-4 py-2 mb-2 flex">                
-              <button onClick={openDialogOrtherUser}>
-                <img 
-                    src={selectedConversation.profilePic}
-                    alt="user avatar" 
-                    className="imgUserinLogout"
-                  />
-              </button>
-              <div className="">
-                <span className="text-gray-100 font-bold ">{selectedConversation.fullName}</span>
-              </div>
-              {isOpenOrtherUser && (
-                <div className="dialogShowOrtherUser-overlay z-[3]" onClick={closeDialogOrtherUser}>
-                  <div className="dialogShowOrtherUser" onClick={(e) => e.stopPropagation()}>
-                    <div className="dialogShowOrtherUser-content">
-                      <h2 className="text-black editNameDialogProfile">{selectedConversation.fullName}`s Profile</h2>
-                      <h3>Avata : 
-                      <img 
+    <div className="flex flex-col flex-1 h-full">
+      {!selectedConversation ? (
+        <NoChatSelected />
+      ) : (
+        <>
+          {/* Header */}
+          <div className="bg-violet-600 px-4 py-2 mb-2 flex">
+            <button onClick={openDialogOrtherUser}>
+              <img
+                src={selectedConversation.profilePic}
+                alt="user avatar"
+                className="imgUserinLogout"
+              />
+            </button>
+            <div className="">
+              <span className="text-gray-100 font-bold ">
+                {selectedConversation.fullName}
+              </span>
+            </div>
+            {isOpenOrtherUser && (
+              <div
+                className="dialogShowOrtherUser-overlay z-[3]"
+                onClick={closeDialogOrtherUser}
+              >
+                <div
+                  className="dialogShowOrtherUser"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="dialogShowOrtherUser-content">
+                    <h2 className="text-black editNameDialogProfile">
+                      {selectedConversation.fullName}`s Profile
+                    </h2>
+                    <h3>
+                      Avata :
+                      <img
                         src={selectedConversation.profilePic}
-                        alt="user avatar" 
+                        alt="user avatar"
                         className="editImgOrtherProfile"
                       />
-                      </h3>
-                      <h3 >Full Name : {selectedConversation.fullName}</h3>
-                      <h3 >Gen Der : {selectedConversation.gender}</h3>
-                      <form>
-                        <div>
-                          <button className="btn editButtonCloseDialogShowOrtherUserClose" onClick={closeDialogOrtherUser}>
-                            <AiFillCloseCircle className="" />
-                            Close
-                          </button>
-                        </div>
-                      </form>
-                    </div>
+                    </h3>
+                    <h3>Full Name : {selectedConversation.fullName}</h3>
+                    <h3>Gen Der : {selectedConversation.gender}</h3>
+                    <form>
+                      <div>
+                        <button
+                          className="btn editButtonCloseDialogShowOrtherUserClose"
+                          onClick={closeDialogOrtherUser}
+                        >
+                          <AiFillCloseCircle className="" />
+                          Close
+                        </button>
+                      </div>
+                    </form>
                   </div>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
+          </div>
 
-            <Messages/>
-            <MessageInput/> 
-          </>
-        )}
+          <Messages />
+          <MessageInput />
+        </>
+      )}
     </div>
   );
 };
 
 export default MessageContainer;
 
-
-
 const NoChatSelected = () => {
-  const {authUser} = useAuthContext();
+  const { authUser } = useAuthContext();
   return (
-    <div className="flex items-center justify-center w-full h-full"> 
+    <div className="flex items-center justify-center w-full h-full">
       <div className="px-4 text-center sm:text-lg md:text-x1 text-gray-200 font-semibold flex flex-col items-center gap-2">
         <p>Wellcome 👋 {authUser.fullName} ❄</p>
-
         <p>Select a chat to start messaging</p>
-        <LuMessagesSquare  className="text-3x1 md:text-6x1 text-center" />
+        <LuMessagesSquare className="text-3x1 md:text-6x1 text-center" />
       </div>
     </div>
   );
 };
-
-
-
-
 
 // STARTER CODE SNIPPET
 // import React from "react";
