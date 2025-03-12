@@ -427,3 +427,79 @@ body {
   flex: 1;
   margin-left: 10px;
 }
+
+/* Thêm vào cuối file CSS */
+
+/* Cải thiện hiển thị tin nhắn dài */
+.responScreenMessage {
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Tạo thanh cuộn đẹp cho tin nhắn dài */
+.chat-bubble {
+  max-height: 300px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 92, 246, 0.5) rgba(30, 30, 30, 0.1);
+}
+
+.chat-bubble::-webkit-scrollbar {
+  width: 4px;
+}
+
+.chat-bubble::-webkit-scrollbar-track {
+  background: rgba(30, 30, 30, 0.1);
+  border-radius: 10px;
+}
+
+.chat-bubble::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.5);
+  border-radius: 10px;
+}
+
+/* Cải thiện textarea */
+textarea.resize-none {
+  overflow-y: auto;
+  transition: height 0.2s ease;
+}
+
+/* Indicator colors */
+.text-amber-500 {
+  color: rgb(245, 158, 11);
+}
+
+.text-yellow-500 {
+  color: rgb(234, 179, 8);
+}
+
+.text-red-500 {
+  color: rgb(239, 68, 68);
+}
+
+/* Ẩn thanh cuộn nhưng vẫn cho phép cuộn nội dung */
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  overflow-y: auto;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Cải thiện textarea tự động mở rộng */
+textarea.resize-none {
+  overflow: hidden;
+  transition: height 0.2s ease;
+}
+
+/* Đảm bảo nội dung không vượt quá kích thước chat bubble */
+.chat-bubble {
+  max-height: none;
+  overflow: hidden;
+}

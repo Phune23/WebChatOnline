@@ -14,7 +14,9 @@ const Message = ({ message, onHide, socket }) => {
   const chatClassName = fromMe ? "chat-end" : "chat-start";
   const profilePic = fromMe ? authUser.profilePic : selectedConversation?.profilePic;
   const nameUser = fromMe ? authUser.fullName : selectedConversation?.fullName;
-  const bubblebgColor = fromMe ? 'bg-violet-500' : "";
+  const bubblebgColor = fromMe 
+    ? 'bg-gradient-to-br from-purple-600 to-violet-800' 
+    : "bg-gradient-to-br from-gray-700 to-gray-900";
 
   const shakeClass = message.shouldShake ? `shake` : ""; 
 
@@ -59,51 +61,58 @@ const Message = ({ message, onHide, socket }) => {
   }, [socket, message._id]);
 
   return (
-    <div className={`chat ${chatClassName}`}>
-      <div className="chat-header text-white nameUserInchat ">
+    <div className={`chat ${chatClassName} my-2`}>
+      <div className="chat-header text-white nameUserInchat opacity-80 text-xs mb-1">
         {nameUser}
       </div>
       <div className="chat-image avatar">
-        <div className="w-10 rounded-full">
-          <img src={profilePic} alt="user avatar" />
+        <div className="w-10 rounded-full ring ring-violet-500 ring-offset-base-100 ring-offset-1">
+          <img src={profilePic} alt="user avatar" className="shadow-lg" />
         </div>
       </div>
 
       {!isHidden ? (
         <div className="message-container flex items-center">
           {fromMe && (
-            <button onClick={handleHideMessage} className="ml-2 text-white hide-button editButtonHidenMessage btn btn-circle bg-violet-500">
+            <button 
+              onClick={handleHideMessage} 
+              className="ml-2 text-white hide-button editButtonHidenMessage btn btn-circle bg-violet-700 hover:bg-violet-900 shadow-lg transition-all duration-200"
+            >
               <RiChatOffFill className="w-4 h-4" />
             </button>
           )}
-          <div className={`message-bubble-ortherChatUser responScreenMessage chat-bubble text-white ${bubblebgColor} ${shakeClass}`}>
+          <div className={`message-bubble-ortherChatUser responScreenMessage chat-bubble no-scrollbar text-white ${bubblebgColor} ${shakeClass} shadow-lg border border-violet-300/10 break-words max-w-xs sm:max-w-sm md:max-w-md`}>
             {message.message}
           </div>
         </div>
       ) : (
-        <div className="text-gray-500 italic chat-bubble">This message has been hidden</div>
+        <div className="text-gray-100 italic chat-bubble bg-gray-800/50 flex items-center gap-2 max-w-xs sm:max-w-sm">
+          <LuMessageSquareDashed className="w-4 h-4 flex-shrink-0" />
+          <span>Tin nhắn đã bị ẩn</span>
+        </div>
       )}
-      <div className="text-white chat-footer opacity-50 text-xs flex gap-1 items-center">
-        Send at {formattedTime}
+      
+      <div className="text-white chat-footer opacity-50 text-xs mt-1 flex gap-1 items-center">
+        {formattedTime}
       </div>
 
       {showConfirmDialog && (
-        <div className="dialogShowOrtherUser-overlay z-[3]" onClick={cancelHideMessage}>
-          <div className="dialogShowOrtherUser" onClick={(e) => e.stopPropagation()}>
+        <div className="dialogShowOrtherUser-overlay z-[3] backdrop-blur-sm" onClick={cancelHideMessage}>
+          <div className="dialogShowOrtherUser shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <div className="dialogShowOrtherUser-content">
-              <h2 className="text-black editNameDialogProfile">Confirm Hide Message</h2>
-              <div className="flex justify-center my-6">
+              <h2 className="text-black font-bold text-xl mb-4">Xác nhận ẩn tin nhắn</h2>
+              <div className="flex justify-center my-6 text-violet-700">
                 <LuMessageSquareDashed className="text-[120px]" />
               </div>
-              <p>Are you sure you want to hide this message?</p>
-              <div>
-                <button className="btn editButtonYesDialogShowOrtherUserClose" onClick={confirmHideMessage}>
-                  <AiFillCloseCircle className="" />
-                  Yes
+              <p className="mb-6 text-gray-600">Bạn có chắc chắn muốn ẩn tin nhắn này không?</p>
+              <div className="flex justify-center gap-4">
+                <button className="btn editButtonYesDialogShowOrtherUserClose shadow-md transition-transform hover:scale-105" onClick={confirmHideMessage}>
+                  <AiFillCloseCircle className="mr-1" />
+                  Có
                 </button>
-                <button className="btn editButtonCloseDialogShowOrtherUserClose" onClick={cancelHideMessage}>
-                  <AiFillCloseCircle className="" />
-                  No
+                <button className="btn editButtonCloseDialogShowOrtherUserClose shadow-md transition-transform hover:scale-105" onClick={cancelHideMessage}>
+                  <AiFillCloseCircle className="mr-1" />
+                  Không
                 </button>
               </div>
             </div>
