@@ -1,22 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import { BiLogOut } from "react-icons/bi";
 import useLogout from "../../hooks/useLogout";
 import NoChatSelected from "./NoChatSelected";
 
-const LogoutButton = () => {
+const LogoutButton = ({ collapsed = false }) => {
   const { loading, logout } = useLogout();
+  
   return (
-    <div className="mt-auto areaLogout flex flex-col w-full lg:flex-row">
+    <div className={`mt-auto areaLogout flex ${collapsed ? 'justify-center' : 'flex-col lg:flex-row'} w-full`}>
       {!loading ? (
-        <div className="grid flex-grow place-items-center responsiveDivLogoutButton">
-          <BiLogOut className="cursor-pointer btn-logout-listChatUser" onClick={logout} />
+        <div className="grid flex-grow place-items-center">
+          <BiLogOut 
+            className="cursor-pointer btn-logout-listChatUser text-xl" 
+            onClick={logout} 
+          />
         </div>
       ) : (
         <span className="loading loading-spinner"></span>
       )}
-      <div className="grid flex-grow place-items-center">
-        <NoChatSelected className="cursor-pointer" />
-      </div>
+      
+      {/* Khi sidebar không thu gọn, hiển thị thêm NoChatSelected */}
+      {!collapsed && (
+        <div className="grid flex-grow place-items-center">
+          <NoChatSelected className="cursor-pointer" />
+        </div>
+      )}
     </div>
   );
 };

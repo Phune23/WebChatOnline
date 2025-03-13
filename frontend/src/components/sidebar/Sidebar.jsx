@@ -23,14 +23,14 @@ const Sidebar = () => {
   }, [collapsed]);
 
   return (
-    <div className={`border-r border-slate-500 p-4 flex flex-col h-full ${collapsed ? 'w-16' : 'w-1/4'} backdrop-blur-lg`}>
-      <button onClick={() => setCollapsed(!collapsed)} className="mb-4">
-        {collapsed ? <RiMenuUnfoldLine /> : <RiMenuFoldLine />}
+    <div className={`border-r border-slate-500 p-4 flex flex-col h-full ${collapsed ? 'w-24' : 'w-1/4'} backdrop-blur-lg transition-all duration-300`}>
+      <button onClick={() => setCollapsed(!collapsed)} className="mb-4 text-white hover:text-violet-400 transition-colors">
+        {collapsed ? <RiMenuUnfoldLine size={20} /> : <RiMenuFoldLine size={20} />}
       </button>
-      <SearchInput />
+      <SearchInput collapsed={collapsed} />
       <div className="divider px-3" />
-      <Conversations />
-      <LogoutButton />
+      <Conversations collapsed={collapsed} />
+      <LogoutButton collapsed={collapsed} />
     </div>
   );
 };

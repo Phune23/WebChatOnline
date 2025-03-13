@@ -4,7 +4,7 @@ import useConversation from "../../zustand/useConversation";
 import useGetConversations from "../../hooks/useGetConversations";
 import toast from "react-hot-toast";
 
-const SearchInput = () => {
+const SearchInput = ({ collapsed = false }) => {
   const [search, setSearch] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const { setSelectedConversation } = useConversation();
@@ -51,6 +51,16 @@ const SearchInput = () => {
       toast.error("No such user found!");
     }
   };
+
+  if (collapsed) {
+    return (
+      <div className="flex justify-center">
+        <button className="btn btn-circle bg-violet-500 text-white">
+          <FcSearch className="w-5 h-5" />
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="relative">
