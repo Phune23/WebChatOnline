@@ -73,17 +73,35 @@ const Message = ({ message, onHide, socket }) => {
 
       {!isHidden ? (
         <div className="message-container flex items-center">
-          {fromMe && (
-            <button 
-              onClick={handleHideMessage} 
-              className="ml-2 text-white hide-button editButtonHidenMessage btn btn-circle bg-violet-700 hover:bg-violet-900 shadow-lg transition-all duration-200"
-            >
-              <RiChatOffFill className="w-4 h-4" />
-            </button>
+          {/* For left-aligned messages (other people's), put the message first, then button */}
+          {!fromMe && (
+            <>
+              <div className={`message-bubble-ortherChatUser responScreenMessage chat-bubble no-scrollbar text-white ${bubblebgColor} ${shakeClass} shadow-lg border border-violet-300/10 break-words max-w-xs sm:max-w-sm md:max-w-md`}>
+                {message.message}
+              </div>
+              <button 
+                onClick={handleHideMessage} 
+                className="ml-2 text-white hide-button editButtonHidenMessage btn btn-circle btn-sm bg-violet-700 hover:bg-violet-900 shadow-lg transition-all duration-200"
+              >
+                <RiChatOffFill className="w-3 h-3" />
+              </button>
+            </>
           )}
-          <div className={`message-bubble-ortherChatUser responScreenMessage chat-bubble no-scrollbar text-white ${bubblebgColor} ${shakeClass} shadow-lg border border-violet-300/10 break-words max-w-xs sm:max-w-sm md:max-w-md`}>
-            {message.message}
-          </div>
+          
+          {/* For right-aligned messages (your messages), put button first, then message */}
+          {fromMe && (
+            <>
+              <button 
+                onClick={handleHideMessage} 
+                className="mr-2 text-white hide-button editButtonHidenMessage btn btn-circle btn-sm bg-violet-700 hover:bg-violet-900 shadow-lg transition-all duration-200"
+              >
+                <RiChatOffFill className="w-3 h-3" />
+              </button>
+              <div className={`message-bubble-ortherChatUser responScreenMessage chat-bubble no-scrollbar text-white ${bubblebgColor} ${shakeClass} shadow-lg border border-violet-300/10 break-words max-w-xs sm:max-w-sm md:max-w-md`}>
+                {message.message}
+              </div>
+            </>
+          )}
         </div>
       ) : (
         <div className="text-gray-100 italic chat-bubble bg-gray-800/50 flex items-center gap-2 max-w-xs sm:max-w-sm">
