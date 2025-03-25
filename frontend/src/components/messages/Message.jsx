@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useAuthContext } from "../../context/AuthContext";
 import useConversation from "../../zustand/useConversation";
 import { extractTime } from "../../utils/extractTime";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { LuMessageSquareDashed } from "react-icons/lu";
 import { RiChatOffFill } from "react-icons/ri";
+import { HiCheckCircle, HiXCircle } from "react-icons/hi";
 
 const Message = ({ message, onHide, socket }) => {
   const { authUser } = useAuthContext();
@@ -21,16 +22,17 @@ const Message = ({ message, onHide, socket }) => {
   const shakeClass = message.shouldShake ? `shake` : ""; 
 
   const [isHidden, setIsHidden] = useState(message.hidden);
-  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const messageRef = useRef(null);
 
   const handleHideMessage = () => {
-    setShowConfirmDialog(true);
+    setShowConfirmation(true);
   };
 
   const confirmHideMessage = () => {
     onHide(message._id);
     setIsHidden(true);
-    setShowConfirmDialog(false);
+    setShowConfirmation(false);
     // Emit an event to notify other users
     if (socket) {
       socket.emit("messageHidden", { messageId: message._id });
@@ -38,7 +40,7 @@ const Message = ({ message, onHide, socket }) => {
   };
 
   const cancelHideMessage = () => {
-    setShowConfirmDialog(false);
+    setShowConfirmation(false);
   };
 
   useEffect(() => {
@@ -61,7 +63,7 @@ const Message = ({ message, onHide, socket }) => {
   }, [socket, message._id]);
 
   return (
-    <div className={`chat ${chatClassName} my-2`}>
+    <div className={`chat ${chatClassName} my-2 px-4`}>
       <div className="chat-header text-white nameUserInchat opacity-80 text-xs mb-1">
         {nameUser}
       </div>
@@ -73,32 +75,80 @@ const Message = ({ message, onHide, socket }) => {
 
       {!isHidden ? (
         <div className="message-container flex items-center">
-          {/* For left-aligned messages (other people's), put the message first, then button */}
+          {/* For left-aligned messages (other people's) */}
           {!fromMe && (
             <>
-              <div className={`message-bubble-ortherChatUser responScreenMessage chat-bubble no-scrollbar text-white ${bubblebgColor} ${shakeClass} shadow-lg border border-violet-300/10 break-words max-w-xs sm:max-w-sm md:max-w-md`}>
-                {message.message}
+              <div className="relative" ref={messageRef}>
+                {showConfirmation ? (
+                  <div className="message-bubble-ortherChatUser responScreenMessage chat-bubble text-white bg-black/90 backdrop-blur-sm shadow-xl border border-violet-500/20 flex flex-col items-center justify-center min-w-[200px] min-h-[130px] z-10">
+                    <p className="text-white text-sm font-medium mb-4 px-4 text-center">Ẩn tin nhắn này?</p>
+                    <div className="flex gap-5">
+                      <button 
+                        onClick={confirmHideMessage} 
+                        className="bg-green-600 hover:bg-green-700 text-white p-2.5 rounded-full transition-all hover:scale-105 hover:shadow-lg"
+                      >
+                        <HiCheckCircle className="w-6 h-6" />
+                      </button>
+                      <button 
+                        onClick={cancelHideMessage} 
+                        className="bg-red-600 hover:bg-red-700 text-white p-2.5 rounded-full transition-all hover:scale-105 hover:shadow-lg"
+                      >
+                        <HiXCircle className="w-6 h-6" />
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className={`message-bubble-ortherChatUser responScreenMessage chat-bubble no-scrollbar text-white ${bubblebgColor} ${shakeClass} shadow-lg border border-violet-300/10 break-words max-w-xs sm:max-w-sm md:max-w-md`}>
+                    {message.message}
+                  </div>
+                )}
               </div>
-              <button 
-                onClick={handleHideMessage} 
-                className="ml-2 text-white hide-button editButtonHidenMessage btn btn-circle btn-sm bg-violet-700 hover:bg-violet-900 shadow-lg transition-all duration-200"
-              >
-                <RiChatOffFill className="w-3 h-3" />
-              </button>
+              {!showConfirmation && (
+                <button 
+                  onClick={handleHideMessage} 
+                  className="ml-2 text-white hide-button editButtonHidenMessage btn btn-circle btn-sm bg-violet-700 hover:bg-violet-900 shadow-lg transition-all duration-200"
+                >
+                  <RiChatOffFill className="w-3 h-3" />
+                </button>
+              )}
             </>
           )}
           
-          {/* For right-aligned messages (your messages), put button first, then message */}
+          {/* For right-aligned messages (your messages) */}
           {fromMe && (
             <>
-              <button 
-                onClick={handleHideMessage} 
-                className="mr-2 text-white hide-button editButtonHidenMessage btn btn-circle btn-sm bg-violet-700 hover:bg-violet-900 shadow-lg transition-all duration-200"
-              >
-                <RiChatOffFill className="w-3 h-3" />
-              </button>
-              <div className={`message-bubble-ortherChatUser responScreenMessage chat-bubble no-scrollbar text-white ${bubblebgColor} ${shakeClass} shadow-lg border border-violet-300/10 break-words max-w-xs sm:max-w-sm md:max-w-md`}>
-                {message.message}
+              {!showConfirmation && (
+                <button 
+                  onClick={handleHideMessage} 
+                  className="mr-2 text-white hide-button editButtonHidenMessage btn btn-circle btn-sm bg-violet-700 hover:bg-violet-900 shadow-lg transition-all duration-200"
+                >
+                  <RiChatOffFill className="w-3 h-3" />
+                </button>
+              )}
+              <div className="relative" ref={messageRef}>
+                {showConfirmation ? (
+                  <div className="message-bubble-ortherChatUser responScreenMessage chat-bubble text-white bg-black/90 backdrop-blur-sm shadow-xl border border-violet-500/20 flex flex-col items-center justify-center min-w-[200px] min-h-[130px] z-10">
+                    <p className="text-white text-sm font-medium mb-4 px-4 text-center">Ẩn tin nhắn này?</p>
+                    <div className="flex gap-5">
+                      <button 
+                        onClick={confirmHideMessage} 
+                        className="bg-green-600 hover:bg-green-700 text-white p-2.5 rounded-full transition-all hover:scale-105 hover:shadow-lg"
+                      >
+                        <HiCheckCircle className="w-6 h-6" />
+                      </button>
+                      <button 
+                        onClick={cancelHideMessage} 
+                        className="bg-red-600 hover:bg-red-700 text-white p-2.5 rounded-full transition-all hover:scale-105 hover:shadow-lg"
+                      >
+                        <HiXCircle className="w-6 h-6" />
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className={`message-bubble-ortherChatUser responScreenMessage chat-bubble no-scrollbar text-white ${bubblebgColor} ${shakeClass} shadow-lg border border-violet-300/10 break-words max-w-xs sm:max-w-sm md:max-w-md`}>
+                    {message.message}
+                  </div>
+                )}
               </div>
             </>
           )}
@@ -113,30 +163,6 @@ const Message = ({ message, onHide, socket }) => {
       <div className="text-white chat-footer opacity-50 text-xs mt-1 flex gap-1 items-center">
         {formattedTime}
       </div>
-
-      {showConfirmDialog && (
-        <div className="dialogShowOrtherUser-overlay z-[3] backdrop-blur-sm" onClick={cancelHideMessage}>
-          <div className="dialogShowOrtherUser shadow-2xl" onClick={(e) => e.stopPropagation()}>
-            <div className="dialogShowOrtherUser-content">
-              <h2 className="text-black font-bold text-xl mb-4">Xác nhận ẩn tin nhắn</h2>
-              <div className="flex justify-center my-6 text-violet-700">
-                <LuMessageSquareDashed className="text-[120px]" />
-              </div>
-              <p className="mb-6 text-gray-600">Bạn có chắc chắn muốn ẩn tin nhắn này không?</p>
-              <div className="flex justify-center gap-4">
-                <button className="btn editButtonYesDialogShowOrtherUserClose shadow-md transition-transform hover:scale-105" onClick={confirmHideMessage}>
-                  <AiFillCloseCircle className="mr-1" />
-                  Có
-                </button>
-                <button className="btn editButtonCloseDialogShowOrtherUserClose shadow-md transition-transform hover:scale-105" onClick={cancelHideMessage}>
-                  <AiFillCloseCircle className="mr-1" />
-                  Không
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

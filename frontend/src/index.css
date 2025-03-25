@@ -333,7 +333,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw; /* Use viewport units to ensure full coverage */
+  width: 100%; /* Use viewport units to ensure full coverage */
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.85);
   display: flex;
