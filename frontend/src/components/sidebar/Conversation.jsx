@@ -2,44 +2,53 @@ import React from "react";
 import useConversation from "../../zustand/useConversation";
 import { useSocketContext } from "../../context/SocketContext";
 
-const Conversation = ({ conversation, emoji, lastIdx, collapsed = false }) => {
+const Conversation = ({ conversation, lastIdx, collapsed = false }) => {
     const { selectedConversation, setSelectedConversation } = useConversation();
-
     const isSelected = selectedConversation?._id === conversation._id;
-
     const { onlineUsers } = useSocketContext();
     const isOnline = onlineUsers.includes(conversation._id);
 
     return (
-        <>
-            <div
-                className={`flex ${collapsed ? 'justify-center' : 'items-center'} hover:bg-violet-500 rounded ${collapsed ? 'p-1' : 'p-2'} cursor-pointer ${
-                    lastIdx ? "" : "mb-1"
-                } ${isSelected ? "bg-violet-500" : ""}`}
-                onClick={() => setSelectedConversation(conversation)}
-            >
-                <div className={`avatar ${isOnline ? "online" : ""}`}>
-                    <div className={`${collapsed ? "w-10" : "w-12"} rounded-full ring-2 ring-offset-2 ring-offset-gray-800 transition-all duration-300 ${isSelected ? "ring-white" : "ring-violet-500"} ${isOnline ? "border-2 border-green-500" : ""}`}>
-                        <img 
-                            src={conversation.profilePic}
-                            alt="user avatar"
-                            className="shadow-md"
-                        />
-                    </div>
-                </div>
-
-                {!collapsed && (
-                    <div className="flex flex-col flex-1 ml-2 text-white">
-                        <div className="font-medium">{conversation.fullName}</div>
-                        {isOnline && (
-                            <p className="text-xs text-green-400 mt-1">Online</p>
-                        )}
-                    </div>
+        <div
+            className={`flex ${collapsed ? 'justify-center' : 'items-center'} 
+                      ${isSelected 
+                          ? 'bg-gradient-to-r from-violet-700 to-violet-600 shadow-md' 
+                          : 'hover:bg-gray-800/60'} 
+                      rounded-lg transition-all duration-200 cursor-pointer
+                      ${collapsed ? 'p-1 mb-2' : 'p-2 mb-1'}`}
+            onClick={() => setSelectedConversation(conversation)}
+        >
+            <div className="relative">
+                <img
+                    src={conversation.profilePic}
+                    alt={conversation.fullName}
+                    className={`rounded-full object-cover border-2 
+                              ${isSelected 
+                                  ? 'border-white shadow-lg' 
+                                  : isOnline 
+                                      ? 'border-green-500' 
+                                      : 'border-gray-700'}
+                              ${collapsed ? 'w-10 h-10' : 'w-11 h-11'}`}
+                />
+                
+                {isOnline && (
+                    <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-gray-900"></span>
                 )}
             </div>
 
-            {!lastIdx && <div className="divider my-1 py-0 h-1 opacity-40" />}
-        </>
+            {!collapsed && (
+                <div className="ml-3 overflow-hidden flex-1">
+                    <span className={`block font-medium truncate ${isSelected ? 'text-white' : 'text-gray-300'}`}>
+                        {conversation.fullName}
+                    </span>
+                    <span className={`block text-xs truncate ${
+                        isSelected ? 'text-violet-200/80' : isOnline ? 'text-green-400' : 'text-gray-500'
+                    }`}>
+                        {isOnline ? 'Online' : 'Offline'}
+                    </span>
+                </div>
+            )}
+        </div>
     );
 };
 
