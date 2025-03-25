@@ -128,7 +128,7 @@ const Message = ({ message, onHide, socket }) => {
               <div className="relative" ref={messageRef}>
                 {showConfirmation ? (
                   <div className="message-bubble-ortherChatUser responScreenMessage chat-bubble text-white bg-black/90 backdrop-blur-sm shadow-xl border border-violet-500/20 flex flex-col items-center justify-center min-w-[200px] min-h-[130px] z-10">
-                    <p className="text-white text-sm font-medium mb-4 px-4 text-center">Ẩn tin nhắn này?</p>
+                    <p className="text-white text-sm font-medium mb-4 px-4 text-center">Thu hồi tin nhắn này?</p>
                     <div className="flex gap-5">
                       <button 
                         onClick={confirmHideMessage} 
@@ -156,7 +156,7 @@ const Message = ({ message, onHide, socket }) => {
       ) : (
         <div className="text-gray-100 italic chat-bubble bg-gray-800/50 flex items-center gap-2 max-w-xs sm:max-w-sm">
           <LuMessageSquareDashed className="w-4 h-4 flex-shrink-0" />
-          <span>Tin nhắn đã bị ẩn</span>
+          <span>Tin nhắn đã bị thu hồi</span>
         </div>
       )}
       
